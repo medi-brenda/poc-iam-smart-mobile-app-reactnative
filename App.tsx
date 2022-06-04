@@ -1,20 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { Text, Button, View, StyleSheet } from 'react-native';
+import * as Linking from 'expo-linking';
+import * as WebBrowser from 'expo-web-browser';
+import Constants from 'expo-constants';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+
+        <Text>In poc-iam-smart-mobile-app-reactnative</Text>
+
+        <Button
+          title="Open Online Service App with ReactNative.Linking"
+          onPress={this._handleOpenWithLinking}
+          style={styles.button}
+        />
+        <Button
+          title="Open Online Service App with Expo.WebBrowser"
+          onPress={this._handleOpenWithWebBrowser}
+          style={styles.button}
+        />
+      </View>
+    );
+  }
+
+  _handleOpenWithLinking = () => {
+    Linking.openURL('https://exp.host/@medibrenda/poc-iam-smart-onlineservice-app-reactnative/index.exp?sdkVersion=45.0.0');
+  };
+
+  _handleOpenWithWebBrowser = () => {
+    WebBrowser.openBrowserAsync('https://mediconcen.com/poc-iam-smart/poc-iam-smart-html/call-poc-iam-smart-onlineservice-app-reactnative.html');
+  };
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: 'limegreen',
+  },
+  button: {
+    marginVertical: 10,
   },
 });
