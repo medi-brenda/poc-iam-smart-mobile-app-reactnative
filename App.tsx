@@ -48,7 +48,7 @@ export default class App extends Component {
   };
 
   _handleOpenWithWebBrowserExpo = () => {
-    WebBrowser.openBrowserAsync('https://mediconcen.com/poc-iam-smart/poc-iam-smart-html/call-poc-iam-smart-onlineservice-app-reactnative_exp.html');
+    WebBrowser.openBrowserAsync('https://mediconcen.com/poc-iam-smart/poc-iam-smart-html/call-poc-iam-smart-onlineservice-app-reactnative_expo.html');
   };
 
   _handleOpenWithWebBrowserEAS = () => {
