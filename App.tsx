@@ -9,6 +9,7 @@ const easAppURL = "exp+poc-iam-smart-onlineservice-app-reactnative://expo-develo
 const expoRedirectURL = "https://mediconcen.com/poc-iam-smart/poc-iam-smart-html/call-poc-iam-smart-onlineservice-app-reactnative_expo.html";
 const easRedirectURL = "https://mediconcen.com/poc-iam-smart/poc-iam-smart-html/call-poc-iam-smart-onlineservice-app-reactnative_eas.html";
 
+// React Native Linking
 const OpenURLButton = ({ url, children }) => {
   const handlePress = useCallback(async () => {
     // Checking if the link is supported for links with custom URL scheme.
@@ -64,6 +65,7 @@ export default class App extends Component {
     );
   }
 
+  // Expo Linking
   _handleOpenWithExpoLinkingExpoURL = () => {
     ExpoLinking.openURL(expoAppURL);
   };
@@ -72,6 +74,7 @@ export default class App extends Component {
     ExpoLinking.openURL(easAppURL);
   };
 
+  // Expo WebBrowser
   _handleOpenWithExpoWebBrowserExpoURL = () => {
     ExpoWebBrowser.openBrowserAsync(expoRedirectURL);
   };
