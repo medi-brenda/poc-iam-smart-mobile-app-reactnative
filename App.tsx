@@ -26,7 +26,7 @@ export default class App extends Component {
   }
 
   _handleOpenWithLinking = () => {
-    Linking.openURL('https://exp.host/@medibrenda/poc-iam-smart-onlineservice-app-reactnative/index.exp?sdkVersion=45.0.0');
+    Linking.openURL('exp://exp.host/@medibrenda/poc-iam-smart-onlineservice-app-reactnative?release-channel=default');
   };
 
   _handleOpenWithWebBrowser = () => {
