@@ -4,6 +4,28 @@ import * as ExpoLinking from 'expo-linking';
 import * as ExpoWebBrowser from 'expo-web-browser';
 import Constants from 'expo-constants';
 
+const expoAppURL = "exp://exp.host/@medibrenda/poc-iam-smart-onlineservice-app-reactnative?release-channel=default";
+const easAppURL = "exp+poc-iam-smart-onlineservice-app-reactnative://expo-development-client/?url=https%3A%2F%2Fu.expo.dev%2F4b77fc4f-ea89-452e-b491-d103e3cac86c%3Fchannel-name%3Dmain";
+const expoRedirectURL = "https://mediconcen.com/poc-iam-smart/poc-iam-smart-html/call-poc-iam-smart-onlineservice-app-reactnative_expo.html";
+const easRedirectURL = "https://mediconcen.com/poc-iam-smart/poc-iam-smart-html/call-poc-iam-smart-onlineservice-app-reactnative_eas.html";
+
+const OpenURLButton = ({ url, children }) => {
+  const handlePress = useCallback(async () => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL(url);
+
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL(url);
+    } else {
+      Alert.alert(`Don't know how to open this URL: ${url}`);
+    }
+  }, [url]);
+
+  return <Button title={children} onPress={handlePress} />;
+};
+
 export default class App extends Component {
   render() {
     return (
@@ -11,17 +33,8 @@ export default class App extends Component {
 
         <Text>In poc-iam-smart-mobile-app-reactnative</Text>
 
-        <Button
-          title="Open Online Service App with Bare ReactNative.Linking Expo URL"
-          onPress={this._handleOpenWithBareLinkingExpoURL}
-          style={styles.button}
-        />
-
-        <Button
-          title="Open Online Service App with Bare ReactNative.Linking EAS URL"
-          onPress={this._handleOpenWithBareLinkingEasURL}
-          style={styles.button}
-        />
+        <OpenURLButton url={expoAppURL}>Open Online Service App with Bare ReactNative.Linking Expo URL</OpenURLButton>
+        <OpenURLButton url={easAppURL}>Open Online Service App with Bare ReactNative.Linking EAS URL</OpenURLButton>
 
         <Button
           title="Open Online Service App with Expo ReactNative.Linking Expo URL"
@@ -51,52 +64,20 @@ export default class App extends Component {
     );
   }
 
-  _expoAppURL = "exp://exp.host/@medibrenda/poc-iam-smart-onlineservice-app-reactnative?release-channel=default";
-  _easAppURL = "exp+poc-iam-smart-onlineservice-app-reactnative://expo-development-client/?url=https%3A%2F%2Fu.expo.dev%2F4b77fc4f-ea89-452e-b491-d103e3cac86c%3Fchannel-name%3Dmain";
-
-  _expoRedirectURL = "https://mediconcen.com/poc-iam-smart/poc-iam-smart-html/call-poc-iam-smart-onlineservice-app-reactnative_expo.html";
-  _easRedirectURL = "https://mediconcen.com/poc-iam-smart/poc-iam-smart-html/call-poc-iam-smart-onlineservice-app-reactnative_eas.html";
-
-  _handleOpenWithBareLinkingExpoURL = useCallback(async () => {
-    // Checking if the link is supported for links with custom URL scheme.
-    const supported = await Linking.canOpenURL(this._expoAppURL);
-
-    if (supported) {
-      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-      // by some browser in the mobile
-      await Linking.openURL(this._expoAppURL);
-    } else {
-      Alert.alert(`Don't know how to open this URL: ${this._expoAppURL}`);
-    }
-  }, [this._expoAppURL]);
-
-  _handleOpenWithBareLinkingEasURL  = useCallback(async () => {
-    // Checking if the link is supported for links with custom URL scheme.
-    const supported = await Linking.canOpenURL(this._easAppURL);
-
-    if (supported) {
-      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-      // by some browser in the mobile
-      await Linking.openURL(this._easAppURL);
-    } else {
-      Alert.alert(`Don't know how to open this URL: ${this._easAppURL}`);
-    }
-  }, [this._easAppURL]);
-
   _handleOpenWithExpoLinkingExpoURL = () => {
-    ExpoLinking.openURL(this._expoAppURL);
+    ExpoLinking.openURL(expoAppURL);
   };
 
   _handleOpenWithExpoLinkingEasURL = () => {
-    ExpoLinking.openURL(this._easAppURL);
+    ExpoLinking.openURL(easAppURL);
   };
 
   _handleOpenWithExpoWebBrowserExpoURL = () => {
-    ExpoWebBrowser.openBrowserAsync(this._expoRedirectURL);
+    ExpoWebBrowser.openBrowserAsync(expoRedirectURL);
   };
 
   _handleOpenWithExpoWebBrowserEasURL = () => {
-    ExpoWebBrowser.openBrowserAsync(this._easRedirectURL);
+    ExpoWebBrowser.openBrowserAsync(easRedirectURL);
   };
 }
 
