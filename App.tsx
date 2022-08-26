@@ -1,3 +1,4 @@
+import 'expo-dev-client';
 import React, { Component, useCallback } from 'react';
 import { Alert, Text, Button, View, StyleSheet, Linking } from 'react-native';
 import * as ExpoLinking from 'expo-linking';
