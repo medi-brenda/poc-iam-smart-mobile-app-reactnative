@@ -27,23 +27,6 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "intentFilters": [
-        {
-          "action": "VIEW",
-          "autoVerify": true,
-          "data": [
-            {
-              "scheme": "hk.gov.iamsmart.testapp",
-              "host": "*",
-              "pathPrefix": "*"
-            }
-          ],
-          "category": [
-            "BROWSABLE",
-            "DEFAULT"
-          ]
-        }
-      ],
       "package": "com.medibrenda.pociamsmartmobileappreactnative"
     },
     "web": {
